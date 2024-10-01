@@ -10,26 +10,34 @@ delete_file: Safely deletes files from the server.
 - Clean and customizable file naming convention.
 - Safe deletion of files with error handling.
 
+# Installation
+Before using the library, ensure you have the following dependencies installed:
+```
+pip install
+```
+
 # Usage
 1. Uploading a File
 The upload_file function handles uploading files to a specified folder with validations such as allowed extensions, correct file name format, and ensuring a file is provided.
-
-upload_file(request, upload_folder, allowed_extensions, file_name):
+```python
+upload_file(request, upload_folder, allowed_extensions, file_name)
+```
     
 Parameters:
-request: The incoming HTTP request object that contains the file.
-upload_folder: The target folder path where the file will be saved.
-allowed_extensions: A list of allowed file extensions (e.g., ['.jpg', '.png', '.txt']).
-file_name: The base name for the file (without extension).
+- request: The incoming HTTP request object that contains the file.
+- upload_folder: The target folder path where the file will be saved.
+- allowed_extensions: A list of allowed file extensions (e.g., ['.jpg', '.png', '.txt']).
+- file_name: The base name for the file (without extension).
+
 Returns:
-The full path to the uploaded file if successful.
-Error message if there is an issue.
+- The full path to the uploaded file if successful.
+- Error message if there is an issue.
 
 2. Deleting a File
 The delete_file function handles removing files from the filesystem with safety checks and error handling.
-
+```python
 delete_file(file_path):
-
+```
 Parameters:
 file_path: The full path to the file that needs to be deleted.
 Returns:
@@ -55,6 +63,40 @@ This function safely deletes a file from the given path. It performs the followi
 1. Checks if the file path is valid.
 2. Ensures the file exists.
 3. Tries to delete the file and handles any exceptions.
+
+# Example
+1. Uploading a File
+   ```python
+   from flask import Flask, request
+   from imhotep_files_flask import upload_file
+   @app.route("/file_upload", methods=["POST"])
+   def file_upload():
+        user_id = 1
+
+        photo_path, upload_error = upload_file(request, "path/to/your/upload/file/directory" , (".png", ".jpg", ".jpeg"), user_id)
+        if upload_error:
+            print(upload_error)
+            return upload_error
+        if photo_path:
+        # File uploaded successfully, do something with the file path
+        return "File uploaded successfully!"
+   ```
+1. Deleting a File
+      ```python
+   from flask import Flask, request
+   from imhotep_files_flask import delete_file
+   @app.route("/file_delete", methods=["POST"])
+   def file_delete():
+         file_path = "path/to/the/file/you/wants/to/delete"
+    
+         file_delete , error = delete_file(file_path)
+         if error:
+            print(error)
+            return error
+         if file_delete:
+         # File deleted successfully, do something pn the database for example
+         return "File deleted successfully!"
+   ```
 
 # Error Handling
 Both functions return clear error messages in case of failure:
