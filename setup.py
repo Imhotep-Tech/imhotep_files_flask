@@ -20,9 +20,9 @@ setup(
         'Operating System :: OS Independent',
     ],
     python_requires='>=3.6',  # Minimum Python version
-    entry_points = {
-        "console_scripts":[
-            "imhotep-files-flask = imhotep-files-flask:hello",
-        ],
-    },
+    entry_points={
+      "console_scripts": [
+          "imhotep-files-flask = imhotep_files_flask:hello",
+      ],
+  },
 )
