@@ -1,6 +1,9 @@
 from werkzeug.utils import secure_filename
 import os
 
+def hello():
+    print("Hello from imhotep_files_flask!")
+
 def upload_file(request, upload_folder, allowed_extensions, file_name):
 
     file_name = str(file_name)

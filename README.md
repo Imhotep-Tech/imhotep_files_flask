@@ -13,7 +13,15 @@ delete_file: Safely deletes files from the server.
 # Installation
 Before using the library, ensure you have the following dependencies installed:
 ```
-pip install
+pip install imhotep-files-flask==0.1
+```
+You Can make sure of the installation using 
+```
+imhotep-files-flask
+```
+and you will see on the terminal 
+```
+Hello from imhotep_files_flask!
 ```
 
 # Usage
